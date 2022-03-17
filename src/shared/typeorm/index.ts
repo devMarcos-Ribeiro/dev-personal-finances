@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
+import logger from '../../logger/winston';
 
 createConnection().then(() =>
-  console.log('📦 Successfully connected with database'),
+  logger.info('📦 Successfully connected with database'),
 );

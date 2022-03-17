@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express, { Application } from 'express';
+import './shared/typeorm';
 import logger from './logger/winston';
 
 const PORT = process.env.PORT || 8080;

@@ -7,3 +7,4 @@ temp/
 coverage
 dist
 data/
+ormconfig.json

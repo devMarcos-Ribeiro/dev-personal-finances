@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "es2016",
     "lib": ["es6"],
     "module": "commonjs",
@@ -11,13 +12,16 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
   },
   "exclude": [
     "node_modules",
-    "build"
+    "dist"
   ],
   "include": [
     "src/**/*"
-  ]
+, "database/typeorm"  ]
 }

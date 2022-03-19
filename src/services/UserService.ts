@@ -20,6 +20,7 @@ export class UserService {
         logger.info(`✨ - Returning found user with id: '${id}'.`);
         return omit({ ...user }, ['isActive', 'updatedAt']);
       }
+      logger.error(`❌ - User with '${id}' not found.`);
       throw new ApiError(`User with id '${id}' doesn't exists.`, 404);
     } catch (e) {
       if (e instanceof BSONTypeError) {

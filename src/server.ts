@@ -5,9 +5,6 @@ import logger from './logger';
 import apiErrorValidator from './middlewares/api-error-validator';
 import { connectToDatabase } from './shared/typeorm';
 import getControllers from './controllers';
-import { User } from './entities/User';
-import { UserRepository } from './repositories/UserRepository';
-import { getCustomRepository } from 'typeorm';
 
 export class Server {
   private app: Application;
@@ -26,7 +23,7 @@ export class Server {
   }
 
   private async init(): Promise<void> {
-    await this.setUpExpress();
+    this.setUpExpress();
     await this.setUpDataBase();
     this.setUpControllers();
     this.setupErrorHandlers();
@@ -36,16 +33,9 @@ export class Server {
     logger.info('⌛ - Connecting to database...');
     await connectToDatabase();
     logger.info('📦 - Database successfully connected!');
-    let userRepo: UserRepository = getCustomRepository(UserRepository);
-    let user: User = userRepo.create();
-    user.email = 'marcos@gmail.com';
-    user.firstName = 'Marcos';
-    user.lastName = 'Ribeiro';
-    user.isActive = true;
-    userRepo.save(user);
   }
 
-  private async setUpExpress() {
+  private setUpExpress() {
     this.app.use(json());
     this.app.use(
       cors({

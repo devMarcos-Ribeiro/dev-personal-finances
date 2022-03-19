@@ -12,7 +12,6 @@ export = {
   migrations: ['database/migrations/*.ts'],
   subscribers: ['src/subscriber/**/*.ts'],
   migrationsTableName: 'migrations',
-
   cli: {
     entitiesDir: 'src/entity',
     migrationsDir: 'database/migrations',

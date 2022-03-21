@@ -3,6 +3,8 @@ import User from '../typeorm/entities/User';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import ApiError from '../../../shared/errors/ApiError';
 import { hash } from 'bcryptjs';
+import omit from 'object.omit';
+
 interface IUser {
   firstName?: string;
   lastName?: string;
@@ -43,7 +45,7 @@ class CreateUserService {
     await usersRepository.save(user);
 
 
-    return user;
+    return omit({...user}, ['password']);
   }
 }
 

@@ -3,7 +3,7 @@ import CreateUserService from '../services/CreateUserService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { firstName, lastName, email, isActive } = request.body;
+    const { firstName, lastName, email, isActive, password } = request.body;
 
     const createUser = new CreateUserService();
 
@@ -12,6 +12,7 @@ export default class UsersController {
       lastName,
       email,
       isActive,
+      password
     });
 
     return response.json(user).status(200);

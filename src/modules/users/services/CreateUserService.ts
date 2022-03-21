@@ -10,6 +10,11 @@ interface IUser {
   isActive?: boolean;
   password: string;
 }
+
+interface IOmitUser extends Omit<User, 'password'>{
+
+}
+
 class CreateUserService {
   public async execute({
     firstName,
@@ -17,7 +22,7 @@ class CreateUserService {
     email,
     isActive,
     password,
-  }: IUser): Promise<User> {
+  }: IUser): Promise<IOmitUser> {
     const usersRepository = getCustomRepository(UsersRepository);
     const userAlreadyExists = await usersRepository.findByEmail(email);
 
@@ -36,6 +41,7 @@ class CreateUserService {
     });
 
     await usersRepository.save(user);
+
 
     return user;
   }

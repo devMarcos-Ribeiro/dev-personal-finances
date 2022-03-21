@@ -24,7 +24,7 @@ class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({nullable: false, default: false})
   isActive: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })

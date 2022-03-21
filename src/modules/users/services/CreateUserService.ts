@@ -9,7 +9,6 @@ interface IUser {
   firstName?: string;
   lastName?: string;
   email: string;
-  isActive?: boolean;
   password: string;
 }
 
@@ -22,7 +21,6 @@ class CreateUserService {
     firstName,
     lastName,
     email,
-    isActive,
     password,
   }: IUser): Promise<IOmitUser> {
     const usersRepository = getCustomRepository(UsersRepository);
@@ -38,7 +36,6 @@ class CreateUserService {
       firstName,
       lastName,
       email,
-      isActive,
       password: hashedPassword,
     });
 

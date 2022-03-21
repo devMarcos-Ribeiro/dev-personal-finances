@@ -11,7 +11,6 @@ export default class UsersController {
       firstName,
       lastName,
       email,
-      isActive,
       password
     });
 

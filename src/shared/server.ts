@@ -3,8 +3,8 @@ import { json } from 'express';
 import cors from 'cors';
 import logger from './logger';
 import apiErrorValidator from './middlewares/api-error-validator';
-import { connectToDatabase } from './shared/typeorm';
-import getControllers from './controllers';
+import { connectToDatabase } from './typeorm';
+import routes from './routes';
 
 export class Server {
   private app: Application;
@@ -17,6 +17,7 @@ export class Server {
 
   public async start(): Promise<void> {
     await this.init();
+    this.app.use(routes);
     this.app.listen(this.port, () => {
       logger.info(`🚀 - App is up and running on port: ${this.port}`);
     });
@@ -25,7 +26,6 @@ export class Server {
   private async init(): Promise<void> {
     this.setUpExpress();
     await this.setUpDataBase();
-    this.setUpControllers();
     this.setupErrorHandlers();
   }
 
@@ -46,13 +46,5 @@ export class Server {
 
   private setupErrorHandlers() {
     this.app.use(apiErrorValidator);
-  }
-
-  private setUpControllers() {
-    logger.info(`⌛ - Initializing controllers...`);
-    getControllers().forEach(controller => {
-      this.app.use('/', controller.initializeRoutes().getRouter());
-    });
-    logger.info(`✨ - Controllers have initialized successfully!`);
   }
 }

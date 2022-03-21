@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-export class User {
+@Entity('user')
+class User {
   @ObjectIdColumn()
   id: ObjectID;
 
@@ -22,6 +22,9 @@ export class User {
   email: string;
 
   @Column()
+  password: string;
+
+  @Column({nullable: false, default: false})
   isActive: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
@@ -30,3 +33,5 @@ export class User {
   @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updatedAt?: Date;
 }
+
+export default User;

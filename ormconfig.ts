@@ -8,7 +8,7 @@ export = {
   password: config.DB_PASSWORD,
   database: config.DB_NAME,
   synchronize: false,
-  entities: ['src/entities/*.ts'],
+  entities: ['src/modules/**/typeorm/entities/*.ts'],
   migrations: ['database/migrations/*.ts'],
   subscribers: ['src/subscriber/**/*.ts'],
   migrationsTableName: 'migrations',

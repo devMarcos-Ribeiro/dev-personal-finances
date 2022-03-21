@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import logger from '../logger';
-import ApiError from '../shared/errors/ApiError';
+import ApiError from '../errors/ApiError';
 
 const apiErrorValidator = (
   error: Error,
